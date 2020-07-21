@@ -6,12 +6,17 @@ def print_grid(grid):
 
 
 def row_check(grid, row, entry):
-    for x in grid[row]:
-        print(x)
-        if x == entry:
+    for i in range(9):
+        if grid[row][i] == entry:
             return False
     return True
 
+
+def line_check(grid, line, entry):
+    for i in range(9):
+        if grid[i][line] == entry:
+            return False
+    return True
 
 
 SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
@@ -24,4 +29,4 @@ SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 7, 4],
                [0, 0, 5, 2, 0, 6, 3, 0, 0]]
 
-print(row_check(SUDOKU_GRID, 0, 2))
+print(line_check(SUDOKU_GRID, 0, 1))
