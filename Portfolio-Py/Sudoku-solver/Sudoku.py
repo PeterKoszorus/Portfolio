@@ -28,15 +28,42 @@ def find_zero(grid, xy):
                 return True
 
 
-def check_box(grid, entry, row, line):
+def check_box(grid, entry, box_num):
+    row = box_num[0]
+    line = box_num[1]
+
     for x in range(3):
         print(" ")
         for y in range(3):
-            print(grid[x][y], end=" ")
-            if entry == grid[x][y]:
+            print(grid[x + row][y + line], end=" ")
+            if entry == grid[x + row][y + line]:
                 return False
     return True
 
+
+def which_box(row, line):
+    box_num = [0, 0]
+
+    if row < 3 and line < 3:
+        box_num = [0, 0]
+    elif row < 3 and line < 6:
+        box_num = [0, 3]
+    elif row < 3 and line < 9:
+        box_num = [0, 6]
+    elif row < 6 and line < 3:
+        box_num = [3, 0]
+    elif row < 6 and line < 6:
+        box_num = [3, 3]
+    elif row < 6 and line < 9:
+        box_num = [3, 6]
+    elif row < 9 and line < 3:
+        box_num = [6, 0]
+    elif row < 9 and line < 6:
+        box_num = [6, 3]
+    elif row < 9 and line < 9:
+        box_num = [6, 6]
+
+    return box_num
 
 SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [5, 2, 0, 0, 0, 0, 0, 0, 0],
@@ -52,5 +79,5 @@ xy = [0,0]
 find_zero(SUDOKU_GRID, xy)
 for num in xy:
     print(num)
-print(check_box(SUDOKU_GRID, 7))
+print(check_box(SUDOKU_GRID, 1, which_box(3, 3)))
 print(line_check(SUDOKU_GRID, 0, 1))
