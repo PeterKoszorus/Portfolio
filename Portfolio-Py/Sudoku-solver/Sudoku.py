@@ -19,6 +19,15 @@ def line_check(grid, line, entry):
     return True
 
 
+def find_zero(grid, xy):
+    for row in range(9):
+        for line in range(9):
+            if grid[row][line] == 0:
+                xy[0] = row
+                xy[1] = line
+                return True
+
+
 SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [5, 2, 0, 0, 0, 0, 0, 0, 0],
                [0, 8, 7, 0, 0, 0, 0, 3, 1],
@@ -29,4 +38,8 @@ SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 7, 4],
                [0, 0, 5, 2, 0, 6, 3, 0, 0]]
 
+xy = [0,0]
+find_zero(SUDOKU_GRID, xy)
+for num in xy:
+    print(num)
 print(line_check(SUDOKU_GRID, 0, 1))
