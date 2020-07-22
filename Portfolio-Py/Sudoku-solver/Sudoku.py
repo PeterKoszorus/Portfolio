@@ -28,6 +28,16 @@ def find_zero(grid, xy):
                 return True
 
 
+def check_box(grid, entry, row, line):
+    for x in range(3):
+        print(" ")
+        for y in range(3):
+            print(grid[x][y], end=" ")
+            if entry == grid[x][y]:
+                return False
+    return True
+
+
 SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [5, 2, 0, 0, 0, 0, 0, 0, 0],
                [0, 8, 7, 0, 0, 0, 0, 3, 1],
@@ -42,4 +52,5 @@ xy = [0,0]
 find_zero(SUDOKU_GRID, xy)
 for num in xy:
     print(num)
+print(check_box(SUDOKU_GRID, 7))
 print(line_check(SUDOKU_GRID, 0, 1))
