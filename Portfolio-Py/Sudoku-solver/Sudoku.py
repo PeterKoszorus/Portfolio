@@ -33,9 +33,9 @@ def check_box(grid, entry, box_num):
     line = box_num[1]
 
     for x in range(3):
-        print(" ")
+        # print(" ")
         for y in range(3):
-            print(grid[x + row][y + line], end=" ")
+            # print(grid[x + row][y + line], end=" ")
             if entry == grid[x + row][y + line]:
                 return False
     return True
@@ -65,6 +65,14 @@ def which_box(row, line):
 
     return box_num
 
+
+def all_good(grid, row, line, entry):
+    if row_check(grid, row, entry) and line_check(grid, line, entry) and check_box(grid, entry, which_box(row, line)):
+        return True
+    else:
+        return False
+
+
 SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [5, 2, 0, 0, 0, 0, 0, 0, 0],
                [0, 8, 7, 0, 0, 0, 0, 3, 1],
@@ -75,9 +83,12 @@ SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 7, 4],
                [0, 0, 5, 2, 0, 6, 3, 0, 0]]
 
-xy = [0,0]
-find_zero(SUDOKU_GRID, xy)
-for num in xy:
-    print(num)
-print(check_box(SUDOKU_GRID, 1, which_box(3, 3)))
-print(line_check(SUDOKU_GRID, 0, 1))
+xy = [0, 0]
+row = 0
+line = 1
+# find_zero(SUDOKU_GRID, xy)
+# for num in xy:
+# print(num)
+# print(check_box(SUDOKU_GRID, 1, which_box(3, 3)))
+# print(line_check(SUDOKU_GRID, 0, 1))
+print(all_good(SUDOKU_GRID, row, line, 1))
