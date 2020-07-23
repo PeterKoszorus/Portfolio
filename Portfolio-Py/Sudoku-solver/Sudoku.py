@@ -26,6 +26,7 @@ def find_zero(grid, coordinates):
                 coordinates[0] = row
                 coordinates[1] = col
                 return True
+    return False
 
 
 def check_box(grid, entry, box_num):
@@ -71,6 +72,27 @@ def all_good(grid, row, col, entry):
         return False
 
 
+def solve(grid):
+    yx = [0, 0]
+
+    if not find_zero(grid, yx):
+        return True
+    else:
+        row = yx[0]
+        col = yx[1]
+
+    for num in range(1, 10):
+        if all_good(grid, row, col, num):
+            grid[row][col] = num
+
+            if solve(grid):
+                return True
+
+            grid[row][col] = 0
+
+    return False
+
+
 SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [5, 2, 0, 0, 0, 0, 0, 0, 0],
                [0, 8, 7, 0, 0, 0, 0, 3, 1],
@@ -81,9 +103,10 @@ SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 7, 4],
                [0, 0, 5, 2, 0, 6, 3, 0, 0]]
 
-yx = [0, 0]
-y = yx[0]
-x = yx[1]
-print(all_good(SUDOKU_GRID, y, x, 1))
 print_grid(SUDOKU_GRID)
+print(" ")
+if solve(SUDOKU_GRID):
+    print_grid(SUDOKU_GRID)
+else:
+    print("This sudoku has no solution")
 # dynamic range func by doing range(len(grid))
