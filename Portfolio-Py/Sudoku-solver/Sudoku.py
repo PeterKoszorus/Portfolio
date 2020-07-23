@@ -1,7 +1,7 @@
 def print_grid(grid):
-    for x in range(9):
-        for y in range(9):
-            print(grid[x][y], end=" ")
+    for row in range(9):
+        for col in range(9):
+            print(grid[row][col], end=" ")
         print(" ")
 
 
@@ -12,60 +12,60 @@ def row_check(grid, row, entry):
     return True
 
 
-def line_check(grid, line, entry):
+def line_check(grid, col, entry):
     for i in range(9):
-        if grid[i][line] == entry:
+        if grid[i][col] == entry:
             return False
     return True
 
 
-def find_zero(grid, xy):
+def find_zero(grid, coordinates):
     for row in range(9):
-        for line in range(9):
-            if grid[row][line] == 0:
-                xy[0] = row
-                xy[1] = line
+        for col in range(9):
+            if grid[row][col] == 0:
+                coordinates[0] = row
+                coordinates[1] = col
                 return True
 
 
 def check_box(grid, entry, box_num):
     row = box_num[0]
-    line = box_num[1]
+    col = box_num[1]
 
-    for x in range(3):
-        for y in range(3):
-            if entry == grid[x + row][y + line]:
+    for n in range(3):
+        for m in range(3):
+            if entry == grid[n + row][m + col]:
                 return False
     return True
 
 
-def which_box(row, line):
+def which_box(row, col):
     box_num = [0, 0]
 
-    if row < 3 and line < 3:
+    if row < 3 and col < 3:
         box_num = [0, 0]
-    elif row < 3 and line < 6:
+    elif row < 3 and col < 6:
         box_num = [0, 3]
-    elif row < 3 and line < 9:
+    elif row < 3 and col < 9:
         box_num = [0, 6]
-    elif row < 6 and line < 3:
+    elif row < 6 and col < 3:
         box_num = [3, 0]
-    elif row < 6 and line < 6:
+    elif row < 6 and col < 6:
         box_num = [3, 3]
-    elif row < 6 and line < 9:
+    elif row < 6 and col < 9:
         box_num = [3, 6]
-    elif row < 9 and line < 3:
+    elif row < 9 and col < 3:
         box_num = [6, 0]
-    elif row < 9 and line < 6:
+    elif row < 9 and col < 6:
         box_num = [6, 3]
-    elif row < 9 and line < 9:
+    elif row < 9 and col < 9:
         box_num = [6, 6]
 
     return box_num
 
 
-def all_good(grid, row, line, entry):
-    if row_check(grid, row, entry) and line_check(grid, line, entry) and check_box(grid, entry, which_box(row, line)):
+def all_good(grid, row, col, entry):
+    if row_check(grid, row, entry) and line_check(grid, col, entry) and check_box(grid, entry, which_box(row, col)):
         return True
     else:
         return False
@@ -81,8 +81,9 @@ SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 7, 4],
                [0, 0, 5, 2, 0, 6, 3, 0, 0]]
 
-xy = [0, 0]
-x = xy[0]
-y = xy[1]
-print(all_good(SUDOKU_GRID, x, y, 1))
+yx = [0, 0]
+y = yx[0]
+x = yx[1]
+print(all_good(SUDOKU_GRID, y, x, 1))
+print_grid(SUDOKU_GRID)
 # dynamic range func by doing range(len(grid))
