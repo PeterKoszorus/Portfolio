@@ -33,9 +33,7 @@ def check_box(grid, entry, box_num):
     line = box_num[1]
 
     for x in range(3):
-        # print(" ")
         for y in range(3):
-            # print(grid[x + row][y + line], end=" ")
             if entry == grid[x + row][y + line]:
                 return False
     return True
@@ -84,11 +82,7 @@ SUDOKU_GRID = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
                [0, 0, 5, 2, 0, 6, 3, 0, 0]]
 
 xy = [0, 0]
-row = 0
-line = 1
-# find_zero(SUDOKU_GRID, xy)
-# for num in xy:
-# print(num)
-# print(check_box(SUDOKU_GRID, 1, which_box(3, 3)))
-# print(line_check(SUDOKU_GRID, 0, 1))
-print(all_good(SUDOKU_GRID, row, line, 1))
+x = xy[0]
+y = xy[1]
+print(all_good(SUDOKU_GRID, x, y, 1))
+# dynamic range func by doing range(len(grid))
