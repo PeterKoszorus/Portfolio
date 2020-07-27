@@ -1,27 +1,27 @@
 def print_grid(grid):
-    for row in range(9):
-        for col in range(9):
+    for row in range(len(grid)):
+        for col in range(len(grid)):
             print(grid[row][col], end=" ")
         print(" ")
 
 
 def row_check(grid, row, entry):
-    for i in range(9):
+    for i in range(len(grid)):
         if grid[row][i] == entry:
             return False
     return True
 
 
 def line_check(grid, col, entry):
-    for i in range(9):
+    for i in range(len(grid)):
         if grid[i][col] == entry:
             return False
     return True
 
 
 def find_zero(grid, coordinates):
-    for row in range(9):
-        for col in range(9):
+    for row in range(len(grid)):
+        for col in range(len(grid)):
             if grid[row][col] == 0:
                 coordinates[0] = row
                 coordinates[1] = col
@@ -109,4 +109,3 @@ if solve(SUDOKU_GRID):
     print_grid(SUDOKU_GRID)
 else:
     print("This sudoku has no solution")
-# dynamic range func by doing range(len(grid))
