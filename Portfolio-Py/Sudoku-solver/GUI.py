@@ -1,8 +1,8 @@
 import pygame
 
 # screen settings
-WIDTH = 540
-HEIGHT = 600
+WIDTH = 560
+HEIGHT = 620
 FPS = 30
 
 # colours
@@ -31,4 +31,5 @@ def main():
         fps_clock.tick(FPS)
 
 
-main()
+if __name__ == '__main__':
+    main()

@@ -93,19 +93,24 @@ def solve(grid):
     return False
 
 
-SUDOKU_GRID = [[0, 0, 9, 0, 0, 4, 0, 0, 1],
-               [0, 7, 0, 0, 3, 0, 0, 9, 0],
-               [8, 0, 0, 9, 0, 0, 4, 0, 0],
-               [9, 0, 0, 6, 0, 0, 2, 0, 0],
-               [0, 1, 0, 0, 5, 0, 0, 4, 0],
-               [0, 0, 6, 0, 0, 1, 0, 0, 7],
-               [0, 0, 8, 0, 0, 6, 0, 0, 3],
-               [0, 2, 0, 0, 8, 0, 0, 7, 0],
-               [5, 0, 0, 2, 0, 0, 8, 0, 0]]
+def main():
+    SUDOKU_GRID = [[0, 0, 9, 0, 0, 4, 0, 0, 1],
+                   [0, 7, 0, 0, 3, 0, 0, 9, 0],
+                   [8, 0, 0, 9, 0, 0, 4, 0, 0],
+                   [9, 0, 0, 6, 0, 0, 2, 0, 0],
+                   [0, 1, 0, 0, 5, 0, 0, 4, 0],
+                   [0, 0, 6, 0, 0, 1, 0, 0, 7],
+                   [0, 0, 8, 0, 0, 6, 0, 0, 3],
+                   [0, 2, 0, 0, 8, 0, 0, 7, 0],
+                   [5, 0, 0, 2, 0, 0, 8, 0, 0]]
 
-print_grid(SUDOKU_GRID)
-print(" ")
-if solve(SUDOKU_GRID):
     print_grid(SUDOKU_GRID)
-else:
-    print("This sudoku has no solution")
+    print(" ")
+    if solve(SUDOKU_GRID):
+        print_grid(SUDOKU_GRID)
+    else:
+        print("This sudoku has no solution")
+
+
+if __name__ == '__main__':
+    main()
