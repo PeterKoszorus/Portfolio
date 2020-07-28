@@ -1,5 +1,5 @@
 import pygame
-
+from sudoku_solver import print_grid
 # screen settings
 WIDTH = 560
 HEIGHT = 620
