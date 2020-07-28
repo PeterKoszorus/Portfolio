@@ -1,5 +1,5 @@
 import pygame
-from sudoku_solver import print_grid
+
 # screen settings
 WIDTH = 560
 HEIGHT = 620
@@ -11,7 +11,20 @@ BLACK = [0, 0, 0]
 GRAY = [200, 200, 200]
 
 
+def draw_grid(black, window):
+    # vertical lines
+    # [0] = x, [0] = y
+    start_point = [60, 0]
+    end_point = [60, 540]
+
+    for n in range(8):
+        pygame.draw.line(window, black, start_point, end_point)
+        start_point[0] = start_point[0] + 60
+        end_point[0] = start_point[0]
+
+
 def main():
+
     pygame.init()
 
     fps_clock = pygame.time.Clock()
@@ -27,6 +40,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+        draw_grid(BLACK, main_window)
         pygame.display.update()
         fps_clock.tick(FPS)
 
