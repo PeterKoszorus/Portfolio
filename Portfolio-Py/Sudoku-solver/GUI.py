@@ -1,7 +1,6 @@
 import pygame
-
 # screen settings
-WIDTH = 560
+WIDTH = 543
 HEIGHT = 620
 FPS = 30
 
@@ -14,13 +13,28 @@ GRAY = [200, 200, 200]
 def draw_grid(black, window):
     # vertical lines
     # [0] = x, [0] = y
-    start_point = [60, 0]
-    end_point = [60, 540]
+    start_point = [1, 0]
+    end_point = [1, 540]
 
-    for n in range(8):
-        pygame.draw.line(window, black, start_point, end_point)
+    for n in range(10):
+        if n % 3 == 0:
+            pygame.draw.line(window, black, start_point, end_point, 3)
+        else:
+            pygame.draw.line(window, black, start_point, end_point)
         start_point[0] = start_point[0] + 60
         end_point[0] = start_point[0]
+
+    # horizontal lines
+    start_point = [0, 0]
+    end_point = [540, 0]
+
+    for n in range(10):
+        if n % 3 == 0:
+            pygame.draw.line(window, black, start_point, end_point, 3)
+        else:
+            pygame.draw.line(window, black, start_point, end_point)
+        start_point[1] = start_point[1] + 60
+        end_point[1] = start_point[1]
 
 
 def main():
