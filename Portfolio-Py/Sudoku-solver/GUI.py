@@ -1,6 +1,6 @@
 import pygame
 # screen settings
-WIDTH = 543
+WIDTH = 540
 HEIGHT = 620
 FPS = 30
 
@@ -8,13 +8,14 @@ FPS = 30
 WHITE = [255, 255, 255]
 BLACK = [0, 0, 0]
 GRAY = [200, 200, 200]
+RED = [255, 0, 0]
 
 
 def draw_grid(black, window):
     # vertical lines
     # [0] = x, [0] = y
-    start_point = [1, 0]
-    end_point = [1, 540]
+    start_point = [0, 0]
+    end_point = [0, 540]
 
     for n in range(10):
         if n % 3 == 0:
@@ -37,6 +38,20 @@ def draw_grid(black, window):
         end_point[1] = start_point[1]
 
 
+def draw_rect(red, window, key):
+    SIZE = [60, 60]
+    start_pos = [0, 0]
+
+    pygame.draw.rect(window, red, (start_pos, SIZE), 3)
+    # right
+    if key == 3:
+        start_pos[0] = start_pos[0] + 60
+        pygame.draw.rect(window, red, (start_pos, SIZE), 3)
+    if key == 4:
+        start_pos[1] = start_pos[1] + 60
+        pygame.draw.rect(window, red, (start_pos, SIZE), 3)
+
+
 def main():
 
     pygame.init()
@@ -54,6 +69,16 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    draw_rect(RED, main_window, 1)
+                if event.key == pygame.K_UP:
+                    draw_rect(RED, main_window, 2)
+                if event.key == pygame.K_RIGHT:
+                    draw_rect(RED, main_window, 3)
+                if event.key == pygame.K_DOWN:
+                    draw_rect(RED, main_window, 4)
+
         draw_grid(BLACK, main_window)
         pygame.display.update()
         fps_clock.tick(FPS)
