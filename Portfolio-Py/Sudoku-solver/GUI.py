@@ -11,6 +11,9 @@ BLACK = [0, 0, 0]
 GRAY = [200, 200, 200]
 RED = [255, 0, 0]
 
+# other vars
+point_zero = [0, 0]
+
 
 def draw_grid(black, window):
     # vertical lines
@@ -39,29 +42,23 @@ def draw_grid(black, window):
         end_point[1] = start_point[1]
 
 
-point_zero = [0, 0]
-
-
 def draw_rect(red, window, key, start_pos):
     SIZE = [60, 60]
 
-    # first cube
-    if key == 0:
-        pygame.draw.rect(window, red, (start_pos, SIZE), 4)
     # left
     if key == 1:
         if start_pos[0] <= 0:
             pass
         else:
             start_pos[0] = start_pos[0] - 60
-            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
     # up
     if key == 2:
         if start_pos[1] <= 0:
             pass
         else:
             start_pos[1] = start_pos[1] - 60
-            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
     # right
     if key == 3:
@@ -69,7 +66,7 @@ def draw_rect(red, window, key, start_pos):
             pass
         else:
             start_pos[0] = start_pos[0] + 60
-            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
     # down
     if key == 4:
@@ -77,7 +74,10 @@ def draw_rect(red, window, key, start_pos):
             pass
         else:
             start_pos[1] = start_pos[1] + 60
-            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+    # drawing
+    if key == 0:
+        pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
 
 def main():
@@ -106,8 +106,9 @@ def main():
                 if event.key == pygame.K_DOWN:
                     draw_rect(RED, main_window, 4, point_zero)
 
-        draw_grid(BLACK, main_window)
+        main_window.fill(WHITE)
         draw_rect(RED, main_window, 0, point_zero)
+        draw_grid(BLACK, main_window)
         pygame.display.update()
         fps_clock.tick(FPS)
 
