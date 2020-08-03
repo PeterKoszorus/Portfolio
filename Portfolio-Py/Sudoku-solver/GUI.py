@@ -42,7 +42,7 @@ def draw_grid(black, window):
         end_point[1] = start_point[1]
 
 
-def draw_rect(red, window, key, start_pos):
+def movement(red, window, key, start_pos):
     SIZE = [60, 60]
 
     # left
@@ -51,14 +51,12 @@ def draw_rect(red, window, key, start_pos):
             pass
         else:
             start_pos[0] = start_pos[0] - 60
-            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
     # up
     elif key == 2:
         if start_pos[1] <= 0:
             pass
         else:
             start_pos[1] = start_pos[1] - 60
-            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
     # right
     elif key == 3:
@@ -66,7 +64,6 @@ def draw_rect(red, window, key, start_pos):
             pass
         else:
             start_pos[0] = start_pos[0] + 60
-            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
     # down
     elif key == 4:
@@ -74,10 +71,14 @@ def draw_rect(red, window, key, start_pos):
             pass
         else:
             start_pos[1] = start_pos[1] + 60
-            # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
     # drawing
     else:
         pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+
+
+def text_to_screen(msg, window, font, color, x_pos, y_pos):
+    txt_window = font.render(msg, False, color)
+    window.blit(txt_window, (x_pos, y_pos))
 
 
 def main():
@@ -85,8 +86,8 @@ def main():
 
     fps_clock = pygame.time.Clock()
     main_window = pygame.display.set_mode((WIDTH, HEIGHT))
+    font = pygame.font.SysFont(None, 60)
 
-    main_window.fill(WHITE)
     pygame.display.set_caption("Sudoku")
     pygame.display.set_icon(pygame.image.load("Logo.png"))
 
@@ -98,18 +99,19 @@ def main():
                 run = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    draw_rect(RED, main_window, 1, point_zero)
+                    movement(RED, main_window, 1, point_zero)
                 if event.key == pygame.K_UP:
-                    draw_rect(RED, main_window, 2, point_zero)
+                    movement(RED, main_window, 2, point_zero)
                 if event.key == pygame.K_RIGHT:
-                    draw_rect(RED, main_window, 3, point_zero)
+                    movement(RED, main_window, 3, point_zero)
                 if event.key == pygame.K_DOWN:
-                    draw_rect(RED, main_window, 4, point_zero)
+                    movement(RED, main_window, 4, point_zero)
 
         main_window.fill(WHITE)
-        draw_rect(RED, main_window, 0, point_zero)
+        movement(RED, main_window, 0, point_zero)
+        text_to_screen("9", main_window, font, BLACK, 20, 10)
         draw_grid(BLACK, main_window)
-        pygame.display.update()
+        pygame.display.flip()
         fps_clock.tick(FPS)
 
 
