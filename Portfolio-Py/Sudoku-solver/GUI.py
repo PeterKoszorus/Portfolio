@@ -45,32 +45,39 @@ point_zero = [0, 0]
 def draw_rect(red, window, key, start_pos):
     SIZE = [60, 60]
 
-    if start_pos[0] >= 480 or start_pos[1] >= 480 or start_pos[0] < 0 or start_pos[1] < 0:
-        return False
     # first cube
     if key == 0:
         pygame.draw.rect(window, red, (start_pos, SIZE), 4)
-        return True
     # left
     if key == 1:
-        start_pos[0] = start_pos[0] - 60
-        pygame.draw.rect(window, red, (start_pos, SIZE), 4)
-        return True
+        if start_pos[0] <= 0:
+            pass
+        else:
+            start_pos[0] = start_pos[0] - 60
+            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
     # up
     if key == 2:
-        start_pos[1] = start_pos[1] - 60
-        pygame.draw.rect(window, red, (start_pos, SIZE), 4)
-        return True
+        if start_pos[1] <= 0:
+            pass
+        else:
+            start_pos[1] = start_pos[1] - 60
+            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+
     # right
     if key == 3:
-        start_pos[0] = start_pos[0] + 60
-        pygame.draw.rect(window, red, (start_pos, SIZE), 4)
-        return True
+        if start_pos[0] == 480:
+            pass
+        else:
+            start_pos[0] = start_pos[0] + 60
+            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
+
     # down
     if key == 4:
-        start_pos[1] = start_pos[1] + 60
-        pygame.draw.rect(window, red, (start_pos, SIZE), 4)
-        return True
+        if start_pos[1] == 480:
+            pass
+        else:
+            start_pos[1] = start_pos[1] + 60
+            pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
 
 def main():
@@ -91,22 +98,14 @@ def main():
                 run = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    if not draw_rect(RED, main_window, 1, point_zero):
-                        print("#1 " + str(point_zero[1]))
-                        point_zero[0] = point_zero[0] + 60
+                    draw_rect(RED, main_window, 1, point_zero)
                 if event.key == pygame.K_UP:
-                    if not draw_rect(RED, main_window, 2, point_zero):
-                        print("#2 " + str(point_zero[1]))
-                        point_zero[1] = point_zero[1] + 60
+                    draw_rect(RED, main_window, 2, point_zero)
                 if event.key == pygame.K_RIGHT:
-                    if not draw_rect(RED, main_window, 3, point_zero):
-                        print("#3 " + str(point_zero[1]))
-                        point_zero[0] = point_zero[0] - 60
+                    draw_rect(RED, main_window, 3, point_zero)
                 if event.key == pygame.K_DOWN:
-                    if not draw_rect(RED, main_window, 4, point_zero):
-                        print("#4 " + str(point_zero[1]))
-                        point_zero[1] = point_zero[1] - 60
-        print(point_zero)
+                    draw_rect(RED, main_window, 4, point_zero)
+
         draw_grid(BLACK, main_window)
         draw_rect(RED, main_window, 0, point_zero)
         pygame.display.update()
