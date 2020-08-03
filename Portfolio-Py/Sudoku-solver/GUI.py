@@ -1,8 +1,9 @@
 import pygame
+
 # screen settings
 WIDTH = 540
 HEIGHT = 620
-FPS = 30
+FPS = 60
 
 # colours
 WHITE = [255, 255, 255]
@@ -38,22 +39,34 @@ def draw_grid(black, window):
         end_point[1] = start_point[1]
 
 
-def draw_rect(red, window, key):
-    SIZE = [60, 60]
-    start_pos = [0, 0]
+point_zero = [0, 0]
 
-    pygame.draw.rect(window, red, (start_pos, SIZE), 3)
+
+def draw_rect(red, window, key, start_pos):
+    SIZE = [60, 60]
+
+    # first cube
+    if key == 0:
+        pygame.draw.rect(window, red, (start_pos, SIZE), 3)
+    # left
+    if key == 1:
+        start_pos[0] = start_pos[0] - 60
+        pygame.draw.rect(window, red, (start_pos, SIZE), 3)
+    # up
+    if key == 2:
+        start_pos[1] = start_pos[1] - 60
+        pygame.draw.rect(window, red, (start_pos, SIZE), 3)
     # right
     if key == 3:
         start_pos[0] = start_pos[0] + 60
         pygame.draw.rect(window, red, (start_pos, SIZE), 3)
+    # down
     if key == 4:
         start_pos[1] = start_pos[1] + 60
         pygame.draw.rect(window, red, (start_pos, SIZE), 3)
 
 
 def main():
-
     pygame.init()
 
     fps_clock = pygame.time.Clock()
@@ -71,15 +84,16 @@ def main():
                 run = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    draw_rect(RED, main_window, 1)
+                    draw_rect(RED, main_window, 1, point_zero)
                 if event.key == pygame.K_UP:
-                    draw_rect(RED, main_window, 2)
+                    draw_rect(RED, main_window, 2, point_zero)
                 if event.key == pygame.K_RIGHT:
-                    draw_rect(RED, main_window, 3)
+                    draw_rect(RED, main_window, 3, point_zero)
                 if event.key == pygame.K_DOWN:
-                    draw_rect(RED, main_window, 4)
+                    draw_rect(RED, main_window, 4, point_zero)
 
         draw_grid(BLACK, main_window)
+        draw_rect(RED, main_window, 0, point_zero)
         pygame.display.update()
         fps_clock.tick(FPS)
 
