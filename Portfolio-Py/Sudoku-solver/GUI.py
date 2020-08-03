@@ -53,7 +53,7 @@ def draw_rect(red, window, key, start_pos):
             start_pos[0] = start_pos[0] - 60
             # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
     # up
-    if key == 2:
+    elif key == 2:
         if start_pos[1] <= 0:
             pass
         else:
@@ -61,7 +61,7 @@ def draw_rect(red, window, key, start_pos):
             # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
     # right
-    if key == 3:
+    elif key == 3:
         if start_pos[0] == 480:
             pass
         else:
@@ -69,14 +69,14 @@ def draw_rect(red, window, key, start_pos):
             # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
     # down
-    if key == 4:
+    elif key == 4:
         if start_pos[1] == 480:
             pass
         else:
             start_pos[1] = start_pos[1] + 60
             # pygame.draw.rect(window, red, (start_pos, SIZE), 4)
     # drawing
-    if key == 0:
+    else:
         pygame.draw.rect(window, red, (start_pos, SIZE), 4)
 
 
