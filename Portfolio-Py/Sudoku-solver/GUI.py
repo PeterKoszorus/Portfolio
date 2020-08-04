@@ -106,7 +106,7 @@ def text_to_screen(msg, window, font, color, x_pos, y_pos):
     window.blit(txt_window, (x_pos, y_pos))
 
 
-def num_to_grid(num):
+def grid_change(num):
     sudoku_grid[int(where_am_i()[0])][int(where_am_i()[1])] = num
 
 
@@ -136,25 +136,25 @@ def main():
                 if event.key == pygame.K_DOWN:
                     movement(RED, main_window, 4, point_zero)
                 if event.key == pygame.K_KP0:
-                    num_to_grid(0)
+                    grid_change(0)
                 if event.key == pygame.K_KP1:
-                    num_to_grid(1)
+                    grid_change(1)
                 if event.key == pygame.K_KP2:
-                    num_to_grid(2)
+                    grid_change(2)
                 if event.key == pygame.K_KP3:
-                    num_to_grid(3)
+                    grid_change(3)
                 if event.key == pygame.K_KP4:
-                    num_to_grid(4)
+                    grid_change(4)
                 if event.key == pygame.K_KP5:
-                    num_to_grid(5)
+                    grid_change(5)
                 if event.key == pygame.K_KP6:
-                    num_to_grid(6)
+                    grid_change(6)
                 if event.key == pygame.K_KP7:
-                    num_to_grid(7)
+                    grid_change(7)
                 if event.key == pygame.K_KP8:
-                    num_to_grid(8)
+                    grid_change(8)
                 if event.key == pygame.K_KP9:
-                    num_to_grid(9)
+                    grid_change(9)
 
         main_window.fill(WHITE)
         movement(RED, main_window, 0, point_zero)
