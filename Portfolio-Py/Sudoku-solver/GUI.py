@@ -13,15 +13,15 @@ RED = [255, 0, 0]
 
 # other vars
 point_zero = [0, 0]
-sudoku_grid = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
-               [2, 7, 0, 0, 3, 0, 0, 9, 0],
-               [3, 0, 0, 9, 0, 0, 4, 0, 0],
-               [4, 0, 0, 6, 0, 0, 2, 0, 0],
-               [5, 1, 0, 0, 5, 0, 0, 4, 0],
-               [6, 0, 6, 0, 0, 1, 0, 0, 7],
-               [7, 0, 8, 0, 0, 6, 0, 0, 3],
-               [8, 2, 0, 0, 8, 0, 0, 7, 0],
-               [9, 0, 0, 2, 0, 0, 8, 0, 0]]
+sudoku_grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 
 def where_am_i():
@@ -60,11 +60,14 @@ def draw_grid(black, window, font):
     xy = [20, 10]
     for row in range(len(sudoku_grid)):
         for col in range(len(sudoku_grid)):
-            num = sudoku_grid[col][row]
-            text_to_screen(str(num), window, font, BLACK, xy[0], xy[1])
-            xy[1] = xy[1] + 60
-        xy[0] = xy[0] + 60
-        xy[1] = 10
+            num = sudoku_grid[row][col]
+            if num == 0:
+                pass
+            else:
+                text_to_screen(str(num), window, font, BLACK, xy[0], xy[1])
+            xy[0] = xy[0] + 60
+        xy[1] = xy[1] + 60
+        xy[0] = 20
 
 
 def movement(red, window, key, start_pos):
@@ -108,7 +111,7 @@ def text_to_screen(msg, window, font, color, x_pos, y_pos):
 
 
 def grid_change(num):
-    sudoku_grid[int(where_am_i()[0])][int(where_am_i()[1])] = num
+    sudoku_grid[int(where_am_i()[1])][int(where_am_i()[0])] = num
 
 
 def main():
