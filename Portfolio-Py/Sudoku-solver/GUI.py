@@ -60,7 +60,7 @@ def draw_grid(black, window, font):
     xy = [20, 10]
     for row in range(len(sudoku_grid)):
         for col in range(len(sudoku_grid)):
-            num = sudoku_grid[int(where_am_i()[0])][int(where_am_i()[1])]
+            num = sudoku_grid[col][row]
             text_to_screen(str(num), window, font, BLACK, xy[0], xy[1])
             xy[0] = xy[0] + 60
         xy[1] = xy[1] + 60
