@@ -13,9 +13,24 @@ RED = [255, 0, 0]
 
 # other vars
 point_zero = [0, 0]
+sudoku_grid = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
+               [2, 7, 0, 0, 3, 0, 0, 9, 0],
+               [3, 0, 0, 9, 0, 0, 4, 0, 0],
+               [4, 0, 0, 6, 0, 0, 2, 0, 0],
+               [5, 1, 0, 0, 5, 0, 0, 4, 0],
+               [6, 0, 6, 0, 0, 1, 0, 0, 7],
+               [7, 0, 8, 0, 0, 6, 0, 0, 3],
+               [8, 2, 0, 0, 8, 0, 0, 7, 0],
+               [9, 0, 0, 2, 0, 0, 8, 0, 0]]
 
 
-def draw_grid(black, window):
+def where_am_i():
+    x = point_zero[0] / 60
+    y = point_zero[1] / 60
+    return x, y
+
+
+def draw_grid(black, window, font):
     # vertical lines
     # [0] = x, [0] = y
     start_point = [0, 0]
@@ -40,6 +55,15 @@ def draw_grid(black, window):
             pygame.draw.line(window, black, start_point, end_point)
         start_point[1] = start_point[1] + 60
         end_point[1] = start_point[1]
+
+    # drawing num
+    xy = [20, 10]
+    for row in range(len(sudoku_grid)):
+        for col in range(len(sudoku_grid)):
+            num = sudoku_grid[int(where_am_i()[0])][int(where_am_i()[1])]
+            text_to_screen(str(num), window, font, BLACK, xy[0], xy[1])
+            xy[0] = xy[0] + 60
+        xy[1] = xy[1] + 60
 
 
 def movement(red, window, key, start_pos):
@@ -71,6 +95,7 @@ def movement(red, window, key, start_pos):
             pass
         else:
             start_pos[1] = start_pos[1] + 60
+
     # drawing
     else:
         pygame.draw.rect(window, red, (start_pos, SIZE), 4)
@@ -79,6 +104,10 @@ def movement(red, window, key, start_pos):
 def text_to_screen(msg, window, font, color, x_pos, y_pos):
     txt_window = font.render(msg, False, color)
     window.blit(txt_window, (x_pos, y_pos))
+
+
+def num_to_grid(num):
+    sudoku_grid[int(where_am_i()[0])][int(where_am_i()[1])] = num
 
 
 def main():
@@ -106,11 +135,18 @@ def main():
                     movement(RED, main_window, 3, point_zero)
                 if event.key == pygame.K_DOWN:
                     movement(RED, main_window, 4, point_zero)
+                if event.key == pygame.K_0:
+                    num_to_grid(0)
+                if event.key == pygame.K_1:
+                    num_to_grid(1)
+                if event.key == pygame.K_2:
+                    num_to_grid(2)
+                if event.key == pygame.K_3:
+                    num_to_grid(3)
 
         main_window.fill(WHITE)
         movement(RED, main_window, 0, point_zero)
-        text_to_screen("9", main_window, font, BLACK, 20, 10)
-        draw_grid(BLACK, main_window)
+        draw_grid(BLACK, main_window, font)
         pygame.display.flip()
         fps_clock.tick(FPS)
 
