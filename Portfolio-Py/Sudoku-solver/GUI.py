@@ -1,5 +1,6 @@
 import pygame
 from sudoku_solver import solve
+
 # screen settings
 WIDTH = 540
 HEIGHT = 620
