@@ -1,5 +1,5 @@
 import pygame
-
+from sudoku_solver import solve
 # screen settings
 WIDTH = 540
 HEIGHT = 620
@@ -159,6 +159,8 @@ def main():
                     grid_change(8)
                 if event.key == pygame.K_KP9:
                     grid_change(9)
+                if event.key == pygame.K_KP_ENTER:
+                    solve(sudoku_grid)
 
         main_window.fill(WHITE)
         movement(RED, main_window, 0, point_zero)
