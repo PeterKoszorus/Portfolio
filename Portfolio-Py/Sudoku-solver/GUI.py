@@ -115,6 +115,12 @@ def grid_change(num):
     sudoku_grid[int(where_am_i()[1])][int(where_am_i()[0])] = num
 
 
+def clear_grid():
+    for col in range(len(sudoku_grid)):
+        for row in range(len(sudoku_grid)):
+            sudoku_grid[col][row] = 0
+
+
 def main():
     pygame.init()
 
@@ -162,6 +168,8 @@ def main():
                     grid_change(9)
                 if event.key == pygame.K_KP_ENTER:
                     solve(sudoku_grid)
+                if event.key == pygame.K_BACKSPACE:
+                    clear_grid()
 
         main_window.fill(WHITE)
         movement(RED, main_window, 0, point_zero)
