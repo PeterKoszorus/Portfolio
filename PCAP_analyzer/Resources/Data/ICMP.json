@@ -1,0 +1,18 @@
+{
+    "00": "Echo Reply",
+    "03": "Destination Unreachable",
+    "04": "Source Quench",
+    "05": "Redirect",
+    "08": "Echo Request",
+    "09": "Router Advertisement",
+    "10": "Router Selection",
+    "11": "Time Exceeded",
+    "12": "Parameter Problem",
+    "13": "Timestamp",
+    "14": "Timestamp Reply",
+    "15": "Information Request",
+    "16": "Information Reply",
+    "17": "Address Mask Request",
+    "18": "Address Mask Reply",
+    "30": "Traceroute"
+}
